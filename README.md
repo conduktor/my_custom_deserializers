@@ -2,7 +2,7 @@
 
 Kafka deserializers examples to use to demo/test the Conduktor "custom deserializers" feature.
 
-You can download the latest jar containing these deserializers here: TODO Jules
+You can download the latest jar containing these deserializers here: [my_custom_deserializers_2.13-1.0.0.jar](https://github.com/conduktor/my_custom_deserializers/releases/download/1.0.0/my_custom_deserializers_2.13-1.0.0.jar)
 
 To learn how to use the "custom deserializer" feature provided in Condukot, you can read the documentation of the feature: https://docs.conduktor.io/features/consuming-data/custom-deserializers
 
