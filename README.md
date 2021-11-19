@@ -81,7 +81,7 @@ it creates a new instance of a data structure named `MyMessage`, that contains o
 
 This simple example is here to demonstrate 2 things:
   - What's happening when a custom deserializer fails to deserialize a message.
-  - Give a simple example of "deserialization" (the message has to respect of certain format so that the deserializer can extract the data)
+  - Give a simplified example of "deserialization" (the message has to respect of certain format so that the deserializer can extract the data)
 
 
 
