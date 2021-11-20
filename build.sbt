@@ -1,7 +1,7 @@
 name                                     := "my_custom_deserializers"
 version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
 scalaVersion                             := "2.13.7"
-libraryDependencies += "org.apache.kafka" % "kafka-clients" % "2.8.1"
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.0.0"
 
 // ## Github Packages publish configs
 // More info, see: https://gist.github.com/guizmaii/2ca47b74ad8e26c772d7df6ada8ddb00
