@@ -49,7 +49,8 @@ To see simple example around constants, jump [here](./doc/details.md)
 
 This example allow to deserialize a protobuf payload corresponding to this schema : 
 
-```message Person {
+```
+message Person {
   required string name = 1;
   required int32 id = 2;
   optional string email = 3;
@@ -66,4 +67,5 @@ This example allow to deserialize a protobuf payload corresponding to this schem
   }
 
   repeated PhoneNumber phones = 4;
-}```
+}
+```
