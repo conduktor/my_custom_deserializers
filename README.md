@@ -18,7 +18,7 @@ then sees if it matches then following format:
 ```
 -- this is the serialized data
 ```
-- If the message received from Kakfa effectively starts with a `--<space>` characters sequence then followed by some text, 
+- If the message received from Kafka effectively starts with a `--<space>` characters sequence then followed by some text, 
 it creates a new instance of a data structure named `MyMessage`, that contains only one field named `value` and is of type `String`, as following:     
     ```scala
     MyMessage(value = "this is the serialized data")
