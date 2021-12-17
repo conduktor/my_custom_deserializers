@@ -1,69 +1,24 @@
-# my_custom_deserializers
+# Conduktor custom deserializers examples
 
-Kafka deserializers examples to use to demo/test the Conduktor "custom deserializers" feature.
+This repository contains example of custom deserializer usable in Conduktor with plugin mechanism.
 
-You can download the latest jar containing these deserializers here: [my_custom_deserializers_2.13-1.0.0.jar](https://github.com/conduktor/my_custom_deserializers/releases/download/1.0.0/my_custom_deserializers_2.13-1.0.0.jar)
+You can download the latest jar containing these deserializers [my_custom_deserializers_2.13-1.0.0.jar](https://github.com/conduktor/my_custom_deserializers/releases/download/1.0.0/my_custom_deserializers_2.13-1.0.0.jar)
 
-To learn how to use the "custom deserializer" feature provided by Conduktor, you can read the documentation of the feature: https://docs.conduktor.io/features/consuming-data/custom-deserializers
+To learn how to use the "custom deserializer" feature see [Conduktor documentation](https://docs.conduktor.io/features/consuming-data/custom-deserializers)
 
-## Deserializers implementation details
+## Simple example 
 
-Here's the list of the deserializers available in this jar and a quick explanation of each deserializer behaviour.    
-These deserializers are for demo/test purpose only.
+`io.example.conduktor.custom.deserializers.MyCustomDeserializer`
 
-#### `io.example.conduktor.custom.deserializers.constant.ConstantString`
+[visible here](./src/main/scala/io/example/conduktor/custom/deserializers/MyCustomDeserializer.scala)
 
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns `this is a message`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantChar`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the letter `c`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantInt`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `1`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantDouble`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `1.234`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantFloat`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `1.456`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantShort`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `2`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantBoolean`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `true`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantByte`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns the value `6`.
-
-#### `io.example.conduktor.custom.deserializers.constant.ConstantNull`
-
-This deserializer completely ignores the content of the messages it receives from Kafka.     
-For each message it receives from Kafka, it returns `null`.
-
-#### `io.example.conduktor.custom.deserializers.MyCustomDeserializer`
 
 This deserializer transforms the data (bytes) it receives from Kafka into a `String` (text),     
 then sees if it matches then following format:
 ```
 -- this is the serialized data
 ```
-- If the message received from Kakfa effectively starts with a `--<space>` characters sequence then followed by some text, 
+- If the message received from Kafka effectively starts with a `--<space>` characters sequence then followed by some text, 
 it creates a new instance of a data structure named `MyMessage`, that contains only one field named `value` and is of type `String`, as following:     
     ```scala
     MyMessage(value = "this is the serialized data")
@@ -84,4 +39,33 @@ This simple example is here to demonstrate 2 things:
   - Give a simplified example of "deserialization" (the message has to respect of certain format so that the deserializer can extract the data)
 
 
+To see simple example around constants, jump [here](./doc/details.md)
 
+## Protobuf example
+`io.example.conduktor.custom.deserializers.MyCustomProtobufDeserializer`
+
+[located here](./src/main/scala/io/example/conduktor/custom/deserializers/MyCustomProtobufDeserializer.scala)
+
+
+This example allow to deserialize a protobuf payload corresponding to this schema : 
+
+```
+message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+```
