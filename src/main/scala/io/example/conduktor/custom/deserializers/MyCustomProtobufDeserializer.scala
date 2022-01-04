@@ -8,7 +8,6 @@ final class MyCustomProtobufSerializer extends Serializer[Person] {
 }
 
 final class MyCustomProtobufDeserializer extends Deserializer[Person] {
-  override def deserialize(topic: String, data: Array[Byte]): Person = {
-      Person.parseFrom(data)
-  }
+  override def deserialize(topic: String, data: Array[Byte]): Person =
+    Person.parseFrom(data)
 }
