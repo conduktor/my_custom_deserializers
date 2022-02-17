@@ -1,6 +1,6 @@
 # Conduktor custom deserializers examples
 
-This repository contains example of custom deserializer usable in Conduktor with plugin mechanism.
+This repository contains examples of custom deserializers usable in Conduktor with plugin mechanism.
 
 You can download the latest jar containing these deserializers [my_custom_deserializers_2.13-1.0.0.jar](https://github.com/conduktor/my_custom_deserializers/releases/download/1.0.0/my_custom_deserializers_2.13-1.0.0.jar)
 
