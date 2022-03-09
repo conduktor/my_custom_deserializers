@@ -1,14 +1,25 @@
-name                                     := "my_custom_deserializers"
-version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
-scalaVersion                             := "2.13.7"
-libraryDependencies += "org.apache.kafka" % "kafka-clients" % "2.8.1"
+name         := "my_custom_deserializers"
+version      := sys.env.getOrElse("CREATED_TAG", "0.1")
+scalaVersion := "2.13.8"
+
+resolvers += "confluent" at "https://packages.confluent.io/maven/"
+resolvers += "jitpack" at "https://jitpack.io"
+
+libraryDependencies += "org.apache.kafka" % "kafka-clients"                % "3.1.0"
+libraryDependencies += "io.confluent"     % "kafka-schema-registry-client" % "7.0.1"
+libraryDependencies += "io.confluent"     % "kafka-schema-registry"        % "7.0.1"
+libraryDependencies += "io.confluent"     % "kafka-protobuf-serializer"    % "7.0.1"
+
 libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.5.0-2"                               % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.5.0-2"
 )
 
-assembly / assemblyJarName               := "plugins.jar"
+libraryDependencies += "org.scalameta" %% "munit" % "1.0.0-M2" % Test
+testFrameworks += new TestFramework("munit.Framework")
+
+assembly / assemblyJarName             := "plugins.jar"
 
 // ## Github Packages publish configs
 // More info, see: https://gist.github.com/guizmaii/2ca47b74ad8e26c772d7df6ada8ddb00
