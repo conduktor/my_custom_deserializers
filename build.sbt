@@ -1,7 +1,7 @@
 name                                     := "my_custom_deserializers"
 version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
 scalaVersion                             := "2.13.8"
-libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.2.3"
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.3.0"
 libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.5.0-3"                               % "protobuf",
