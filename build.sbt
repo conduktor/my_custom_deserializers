@@ -8,14 +8,14 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"
 )
 
-assembly / assemblyJarName               := "plugins.jar"
+assembly / assemblyJarName := "plugins.jar"
 
 // ## Github Packages publish configs
 // More info, see: https://gist.github.com/guizmaii/2ca47b74ad8e26c772d7df6ada8ddb00
 val GITHUB_OWNER   = "conduktor"
 val GITHUB_PROJECT = "my_custom_deserializers"
 
-Compile / PB.targets          := Seq(
+Compile / PB.targets := Seq(
   scalapb.gen() -> (Compile / sourceManaged).value / "scalapb"
 )
 
