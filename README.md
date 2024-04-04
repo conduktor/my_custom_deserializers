@@ -69,3 +69,48 @@ message Person {
   repeated PhoneNumber phones = 4;
 }
 ```
+
+## Configurable example
+`io.example.conduktor.custom.deserializers.MyConfigurableDeserializer`
+
+[located here](./src/main/scala/io/example/conduktor/custom/deserializers/MyConfigurableDeserializer.scala)
+
+This example allow to show deserializer configuration to change it's behavior. 
+To configure the behabor, the Deserializer check for a `output` property in it's configuration. 
+
+### Passthrough mode : 
+With configuration :
+```properties
+output=passthrough
+```
+The data on record are not de coded and returned as-is in bytes array form.
+
+### Config mode :
+With configuration :
+```properties
+output=config
+```
+The configuration is returned on each record deserialization. 
+For example with configuration 
+```properties
+output=config
+other.property=some value
+```
+Will always return JSON like 
+```json
+{
+  "output": "config",
+  "other.property": "some value"
+}
+```
+
+### Constant mode :
+
+With configuration output defined to something else other than `config` or `passthrough` and not empty like:
+```properties
+output=some constant output
+```
+The Deserializer will always return String value like 
+```json
+"some constant output"
+```
