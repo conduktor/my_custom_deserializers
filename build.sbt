@@ -1,3 +1,5 @@
+import org.typelevel.scalacoptions.ScalacOptions
+
 name                                     := "my_custom_deserializers"
 version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
 scalaVersion                             := "2.13.10"
@@ -6,6 +8,10 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"                               % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"
+)
+
+Compile / tpolecatExcludeOptions ++= Set(
+  ScalacOptions.warnNonUnitStatement, // for scalaPB gen sources
 )
 
 assembly / assemblyJarName := "plugins.jar"
