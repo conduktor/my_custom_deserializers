@@ -1,13 +1,17 @@
 import org.typelevel.scalacoptions.ScalacOptions
 
+resolvers += "Confluent Apache Maven Packages" at "https://packages.confluent.io/maven/"
+
 name                                     := "my_custom_deserializers"
 version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
 scalaVersion                             := "2.13.10"
-libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.4.0"
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.6.0"
 libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"                               % "protobuf",
-  "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"
+  "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
+  "io.confluent" % "kafka-protobuf-serializer" % "7.6.0"
 )
 
 Compile / tpolecatExcludeOptions ++= Set(
@@ -15,6 +19,10 @@ Compile / tpolecatExcludeOptions ++= Set(
 )
 
 assembly / assemblyJarName := "plugins.jar"
+
+assembly /assemblyMergeStrategy   := {
+  case x => MergeStrategy.first
+}
 
 // ## Github Packages publish configs
 // More info, see: https://gist.github.com/guizmaii/2ca47b74ad8e26c772d7df6ada8ddb00
