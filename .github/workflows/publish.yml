@@ -13,6 +13,7 @@ jobs:
           distribution: temurin
           java-version: 11
           check-latest: true
+      - uses: sbt/setup-sbt@v1
       - name: Set output
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
