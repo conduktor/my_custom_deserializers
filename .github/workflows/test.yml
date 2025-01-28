@@ -15,5 +15,6 @@ jobs:
           distribution: temurin
           java-version: 11
           check-latest: true
+      - uses: sbt/setup-sbt@v1
       - name: Tests
         run: sbt clean test

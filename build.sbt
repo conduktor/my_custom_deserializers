@@ -1,4 +1,6 @@
 import org.typelevel.scalacoptions.ScalacOptions
+import sbtassembly.AssemblyPlugin.autoImport.*
+
 
 name                                     := "my_custom_deserializers"
 version                                  := sys.env.getOrElse("CREATED_TAG", "0.1")
@@ -7,7 +9,9 @@ libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.4.0"
 libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"                               % "protobuf",
-  "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"
+  "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0",
+  "com.fasterxml.jackson.core"         % "jackson-databind"       % "2.14.3"
+
 )
 
 Compile / tpolecatExcludeOptions ++= Set(
@@ -35,3 +39,8 @@ ThisBuild / credentials += Credentials(
   GITHUB_OWNER,
   System.getenv("GITHUB_TOKEN")
 )
+
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF", "versions", "9", "module-info.class") => MergeStrategy.first
+  case x => (assembly / assemblyMergeStrategy).value(x)
+}
