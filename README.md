@@ -4,7 +4,15 @@ This repository contains examples of custom deserializers usable in Conduktor wi
 
 You can download the latest jar containing these deserializers [my_custom_deserializers_2.13-2.3.0.jar](https://github.com/conduktor/my_custom_deserializers/packages/1105212)
 
-To learn how to use the "custom deserializer" feature see [Conduktor documentation](https://docs.conduktor.io/features/consuming-data/custom-deserializers)
+To learn how to use the "custom deserializer" feature see [Conduktor documentation](https://docs.conduktor.io/platform/guides/custom-deserializers/)
+
+## How to build and package custom deserializers
+
+Console requires a single jar containing all dependencies (also known as a "fat" jar) to be able to use a custom deserializer.
+To build such a jar for the examples in this repository, you simply have to run:
+```sbt assembly```
+
+If you modify the examples to include new dependencies, please make sure that the [assembly merge strategy](./build.sbt) is properly configured to include all the necessary files for your dependencies to work.
 
 ## Simple example 
 
