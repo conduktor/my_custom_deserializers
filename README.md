@@ -12,7 +12,18 @@ Console requires a single jar containing all dependencies (also known as a "fat"
 To build such a jar for the examples in this repository, you simply have to run:
 ```sbt assembly```
 
-If you modify the examples to include new dependencies, please make sure that the [assembly merge strategy](./build.sbt) is properly configured to include all the necessary files for your dependencies to work.
+If you modify the examples to include new dependencies, please make sure that the [assembly merge strategy](./build.sbt) is properly configured to include all the necessary files for your dependencies to work. 
+
+For example, if you make add a Custom deserializer using protobuf to this repository, you should modify the existing assembly merge strategy as following:
+
+```scala
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF", "versions", "9", "module-info.class") => MergeStrategy.first
+  case PathList("com", "google", "type", xs @ _*) => MergeStrategy.first                  // New line to properly merge Google libraries
+  case x => (assembly / assemblyMergeStrategy).value(x)
+}
+```
+
 
 ## Simple example 
 
