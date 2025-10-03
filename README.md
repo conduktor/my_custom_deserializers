@@ -4,7 +4,7 @@ This repository contains examples of custom deserializers usable in Conduktor wi
 
 You can download the latest jar containing these deserializers [my_custom_deserializers_2.13-2.3.0.jar](https://github.com/conduktor/my_custom_deserializers/packages/1105212)
 
-To learn how to use the "custom deserializer" feature see [Conduktor documentation](https://docs.conduktor.io/platform/guides/custom-deserializers/)
+To learn how to use the "custom deserializer" feature see [Conduktor documentation](https://docs.conduktor.io/guide/tutorials/custom-deserializers#configure-custom-deserializers)
 
 ## How to build and package custom deserializers
 
