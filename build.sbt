@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb"               %% "scalapb-runtime"                         % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0"                               % "protobuf",
   "com.thesamet.scalapb.common-protos" %% "proto-google-common-protos-scalapb_0.11" % "2.9.6-0",
-  "com.fasterxml.jackson.core"         % "jackson-databind"       % "2.14.3"
+  "com.fasterxml.jackson.core"         % "jackson-databind"       % "2.21.4"
 
 )
 
